@@ -1,9 +1,9 @@
 import React from 'react'
-import Button from './components/Button'
-import Label from './components/Label'
-import Input from './components/Input'
-import Header from './components/Header'
-import Layout from './components/Layout'
+import Button from '../components/Button'
+import Label from '../components/Label'
+import Input from '../components/Input'
+import Header from '../components/Header'
+import Layout from '../components/Layout'
 
 
 const LoginPage = () => {
