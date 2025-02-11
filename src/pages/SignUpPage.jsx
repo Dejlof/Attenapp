@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Label from '../components/Label'
 import Input from '../components/Input'
 import Button from '../components/Button'
+import Attencam from '../components/Attencam'
 
 
 const SignUpPage = () => {
@@ -77,7 +78,7 @@ const [showPassword, setShowPassword] = React.useState(false);
             w='w-60'
            /> 
             </div>
-            <div className='basis-1/2 mb-5'>
+            <div className='basis-1/2 mb-2'>
             <Label label={"Passsword"}/>
          <div className="relative w-full">
          <Input
@@ -89,7 +90,7 @@ const [showPassword, setShowPassword] = React.useState(false);
     </button>
   </div>     
             </div>
-            <div className='basis-1/2 mb-5'>
+            <div className='basis-1/2 mb-2'>
             <Label label={"Confirm Password"}/>
          <div className="relative w-full mb-4">
          <Input
@@ -101,16 +102,9 @@ const [showPassword, setShowPassword] = React.useState(false);
     </button>
   </div>     
             </div>
-            <div className='basis-1 mb-5'>
-            <Label label={"Image Upload"}/>
-          <Input
-            type={"text"}
-            pad='pl-2'
-            w='w-210'
-           /> 
-            </div>
         </div>
-        <div className='text-center'>
+   <Attencam/>
+        <div className='text-center mt-2'>
         <Button title={"Sign Up"}/>
         </div>
        
