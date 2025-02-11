@@ -4,13 +4,16 @@ import Label from '../components/Label'
 import Input from '../components/Input'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
+import { Link } from 'react-router-dom'
 
 
 const LoginPage = () => {
+    const [showPassword, setShowPassword] = React.useState(false);
+
   return (
     <Layout>
     <Header title={"Log In"}/>
-    <div className='inputdetail'>
+    <div className='inputdetail pt-10'>
     <Label label={"Email"}/>
     <div className="relative mb-4">
       <Input
@@ -24,23 +27,23 @@ const LoginPage = () => {
     <Label label={"Passsword"}/>
    <div className="relative w-full mb-4">
    <Input
-       type={"password"}
+       type={showPassword ? "text":"password"}
        placeholder={"Enter your password"}
        pad='pr-10'
       />
-    <button className="absolute right-3 top-3 text-gray-400">
-      👁️
+   <button type="button"className="absolute right-6 top-3 text-gray-400" onClick={()=>{setShowPassword(!showPassword)}}>
+    <i class="fa-regular fa-eye"></i>
     </button>
   </div>
     </div>
   
   <div className="flex w-100 pt-2 pb-5">
     <p className='basis-1/2'>Remember me</p>
-    <a href="#" className="basis-1/2 text-end underline">Forgot Password?</a>
+    <Link to="/Register" className="basis-1/2 text-end underline">Forgot Password?</Link>
   </div>
   
   <Button title={"Log In"}/>
-  <p className='p-4'>Don't have an account? <a className='underline' href="#">Sign Up</a></p>
+  <p className='p-4'>Don't have an account? <Link className='underline' to="/Register">Sign Up</Link></p>
     </Layout>
   )
 }
