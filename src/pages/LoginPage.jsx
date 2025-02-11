@@ -12,7 +12,7 @@ const LoginPage = () => {
 
   return (
     <Layout>
-    <Header title={"Log In"}/>
+    <Header title={"Log In"} word={"Welcome! Please fill in your credentials"}/>
     <div className='inputdetail pt-10'>
     <Label label={"Email"}/>
     <div className="relative mb-4">
@@ -38,8 +38,15 @@ const LoginPage = () => {
     </div>
   
   <div className="flex w-100 pt-2 pb-5">
-    <p className='basis-1/2'>Remember me</p>
-    <Link to="/Register" className="basis-1/2 text-end underline">Forgot Password?</Link>
+    <div className=' flex flex row basis-1/2'>
+    <Input
+       type={"checkbox"}
+       w='w-5g'
+      />
+      <p>Remember me</p>
+    
+    </div>
+    <Link to="/forgotpassword" className="basis-1/2 text-end underline">Forgot Password?</Link>
   </div>
   
   <Button title={"Log In"}/>

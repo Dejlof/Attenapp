@@ -14,7 +14,7 @@ const [showPassword, setShowPassword] = React.useState(false);
 
   return (
    <Layout>
-     <Header title={"Register"}/>
+     <Header title={"Register"} word={"Welcome! Please fill in your credentials"}/>
      <Label label={"Label required field"}/>
      <div className='pt-5'>
         <div className='flex flex-row flex-wrap justify-between w-210'>

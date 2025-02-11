@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Header = ({title}) => {
+const Header = ({title, word}) => {
   return (
     <div>
       <div className="name-header text-center pb-1">
   <h2 className="text-2xl font-bold mb-2">{title}</h2>
-  <p>Welcome! Please fill in your credentials</p>
+  <p>{word}</p>
   </div>
     </div>
   )
