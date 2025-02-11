@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Button = ({title}) => {
+const Button = ({children}) => {
   return (
     <div>
     <button className="px-4 py-2 bg-[#F0BD2D] text-[#01416EFF] rounded-2xl w-100 cursor-pointer">
-  {title}
+  {children}
 </button>
     </div>
   )

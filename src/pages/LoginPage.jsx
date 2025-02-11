@@ -41,7 +41,7 @@ const LoginPage = () => {
     <div className=' flex flex row basis-1/2'>
     <Input
        type={"checkbox"}
-       w='w-5g'
+       w='w-5'
       />
       <p>Remember me</p>
     
@@ -49,7 +49,10 @@ const LoginPage = () => {
     <Link to="/forgotpassword" className="basis-1/2 text-end underline">Forgot Password?</Link>
   </div>
   
-  <Button title={"Log In"}/>
+  <Link to="#">
+       <Button>
+        Log In
+        </Button></Link>
   <p className='p-4'>Don't have an account? <Link className='underline' to="/Register">Sign Up</Link></p>
     </Layout>
   )

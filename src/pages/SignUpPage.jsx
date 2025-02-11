@@ -5,6 +5,7 @@ import Label from '../components/Label'
 import Input from '../components/Input'
 import Button from '../components/Button'
 import Attencam from '../components/Attencam'
+import { Link } from 'react-router-dom'
 
 
 const SignUpPage = () => {
@@ -104,8 +105,11 @@ const [showPassword, setShowPassword] = React.useState(false);
             </div>
         </div>
    <Attencam/>
-        <div className='text-center mt-2'>
-        <Button title={"Sign Up"}/>
+        <div className='text-center my-2'>
+        <Link to="#">
+       <Button>
+        Register
+        </Button></Link>
         </div>
        
      </div>

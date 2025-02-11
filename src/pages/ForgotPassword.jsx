@@ -23,7 +23,10 @@ const ForgotPassword = () => {
     </div>
     </div>
 
-    <Button title={"Reset Password"}/>
+    <Link to="#">
+       <Button>
+        Reset Password
+        </Button></Link>
     <p className='p-4 text-[#01416EFF]'> <i class="fa-solid fa-arrow-left"></i> Back to <Link className='text-[#F0BD2D] ' to="/">log in</Link></p>
  </Layout>
   )
