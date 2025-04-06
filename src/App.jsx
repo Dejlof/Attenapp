@@ -4,7 +4,10 @@ import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import ForgotPassword from './pages/ForgotPassword'
 import SuccessfulPage from './pages/SuccessfulPage'
-
+import GetStarted from './pages/GetStarted'
+import ScanFacePage from './pages/ScanFacePage'
+import SetPassword from './pages/SetPassword'
+import ResetPassword from './pages/ResetPassword'
 
 function App() {
   return (
@@ -13,6 +16,10 @@ function App() {
 <Route path='/Register' element={<SignUpPage/>} />
 <Route path='/forgotpassword' element={<ForgotPassword/>} />
 <Route path='/sucessful' element={<SuccessfulPage/>} />
+<Route path='/getstarted' element={<GetStarted/>} />
+<Route path='/scanface' element={<ScanFacePage/>} />
+<Route path='/setpassword' element={<SetPassword/>} />
+<Route path='/resetpassword' element={<ResetPassword/>} />
 </Routes>
   )
 }

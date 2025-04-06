@@ -49,7 +49,7 @@ const LoginPage = () => {
     <Link to="/forgotpassword" className="basis-1/2 text-end underline">Forgot Password?</Link>
   </div>
   
-  <Link to="#">
+  <Link to="/getstarted">
        <Button>
         Log In
         </Button></Link>
