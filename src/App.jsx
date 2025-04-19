@@ -8,10 +8,13 @@ import GetStarted from './pages/GetStarted'
 import ScanFacePage from './pages/ScanFacePage'
 import SetPassword from './pages/SetPassword'
 import ResetPassword from './pages/ResetPassword'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
-<Routes>
+    <>
+    <Routes>
 <Route path='/' element={<LoginPage/>} />
 <Route path='/Register' element={<SignUpPage/>} />
 <Route path='/forgotpassword' element={<ForgotPassword/>} />
@@ -21,6 +24,9 @@ function App() {
 <Route path='/setpassword' element={<SetPassword/>} />
 <Route path='/resetpassword' element={<ResetPassword/>} />
 </Routes>
+ <ToastContainer />
+    </>
+
   )
 }
 

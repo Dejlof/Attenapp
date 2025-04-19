@@ -2,8 +2,8 @@ import React, {use, useCallback, useRef, useState} from 'react'
 import Webcam from 'react-webcam';
 
 
-const Attencam = () => {
-  const [img, setImg] = useState(null)
+const Attencam = ({img, setImg}) => {
+
   const webcamRef = useRef(null);
 
   const videoConstraints =
@@ -15,7 +15,7 @@ const Attencam = () => {
   const capture = useCallback(()=>{
     const imageSrc = webcamRef.current.getScreenshot();
     setImg(imageSrc)
-  }, [webcamRef])
+  }, [webcamRef, setImg])
   return (
     <div className='flex flex-col justify-center items-center'>
       <div>
@@ -30,12 +30,12 @@ const Attencam = () => {
             screenshotFormat="image/jpeg"
             videoConstraints={videoConstraints}
           />
-          <button className='ml-15 px-4 py-2 my-3  text-[#F0BD2D] bg-[#01416EFF] rounded-2xl cursor-pointer' onClick={capture}>Capture photo</button>
+          <button type="button" className='ml-15 px-4 py-2 my-3  text-[#F0BD2D] bg-[#01416EFF] rounded-2xl cursor-pointer' onClick={capture}>Capture photo</button>
         </>
       ) : (
         <>
           <img className="h-[250px] w-[250px] object-cover" src={img} alt="screenshot" />
-          <button className='ml-15 px-4 py-2 my-3  text-[#F0BD2D] bg-[#01416EFF] rounded-2xl cursor-pointer'  onClick={() => setImg(null)}>Retake</button>
+          <button type="button" className='ml-15 px-4 py-2 my-3  text-[#F0BD2D] bg-[#01416EFF] rounded-2xl cursor-pointer'  onClick={() => setImg(null)}>Retake</button>
         </>
       )}
   </div>
