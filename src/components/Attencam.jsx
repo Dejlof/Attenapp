@@ -34,8 +34,8 @@ const Attencam = ({img, setImg}) => {
         </>
       ) : (
         <>
-          <img className="h-[250px] w-[250px] object-cover" src={img} alt="screenshot" />
-          <button type="button" className='ml-15 px-4 py-2 my-3  text-[#F0BD2D] bg-[#01416EFF] rounded-2xl cursor-pointer'  onClick={() => setImg(null)}>Retake</button>
+          <img className="h-[250px] w-[250px] object-cover rounded-2xl" src={img} alt="screenshot" />
+          <button type="button" className='ml-20 px-4 py-2 my-3  text-[#F0BD2D] bg-[#01416EFF] rounded-2xl cursor-pointer'  onClick={() => setImg(null)}>Retake</button>
         </>
       )}
   </div>

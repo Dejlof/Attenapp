@@ -1,9 +1,23 @@
 import React from 'react'
 import Layout from '../components/Layout'
 import Button from '../components/Button'
-import { Link } from 'react-router-dom'
+import { Link , useLocation, useNavigate} from 'react-router-dom'
+
+
 
 const GetStarted = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const email = location.state?.email || 'your email';
+  const canId = location.state?.candidateId || 'your canId';
+  
+  const onClick = () => {
+     navigate('/scanface', { state: { email, canId } });
+     console.log(email, canId);
+  }
+
+
   return (
     <Layout>
       <div className='p-6 rounded-full bg-[#f8f9f9]'>
@@ -17,11 +31,11 @@ const GetStarted = () => {
         <h2 className='text-3xl pb-2'>Face Recognition</h2>
         <p>Scan your face to mark your attendance</p>
       </div>
-      <Link to="/scanface">
-      <Button>
+      
+      <Button onClick={onClick}>
         Get Started
       </Button>
-      </Link>
+    
     </Layout>
   
   )

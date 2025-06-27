@@ -10,6 +10,7 @@ import SetPassword from './pages/SetPassword'
 import ResetPassword from './pages/ResetPassword'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
 <Route path='/scanface' element={<ScanFacePage/>} />
 <Route path='/setpassword' element={<SetPassword/>} />
 <Route path='/resetpassword' element={<ResetPassword/>} />
+<Route path='*' element={<NotFoundPage/>} />
 </Routes>
  <ToastContainer />
     </>

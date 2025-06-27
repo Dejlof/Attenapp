@@ -80,27 +80,31 @@ const LoginPage = () => {
 
 
       if (res.ok) {
+        localStorage.setItem('token', responseBody.token);
+        
+        const candId = responseBody.candidateId;
          setFormData({
           username: '',
-          password: '',    
+          password: '',   
       })
-      navigate('/getstarted'); 
+      navigate('/getstarted', { state: { email: formData.username, candidateId : candId} }); 
       toast.success("Login successful!");
     }
      else if(res.status === 400) {
            toast.error("Invalid input. Please check your data.");
          }
          else if (res.status === 500) {
-           toast.error("Server error. Please try again later.");
+           toast.error("An error occured. Please try again later.");
 
          }
          else if(res.status === 401) {
            toast.error("Invalid Username or Password.");
          }
+       
     }
     catch (err) {
       console.error("Error submitting form:", err);
-      toast.error("Server error. Please try again later.");
+      toast.error("An error occured. Please try again later.");
     }
     finally{
       setIsLoading(false);
@@ -145,11 +149,13 @@ const LoginPage = () => {
   </div>
     </div>
   
-  <div className="flex w-100 pt-2 pb-5">
-    <div className=' flex flex row basis-1/2'>
+  <div className="flex w-90 md:w-100 pt-2 pb-5">
+    <div className='flex flex-row basis-1/2'>
     <Input
        type={"checkbox"}
+       wmd='lg:w-5'
        w='w-5'
+       pad='pl-2'
        name="rememberMe"
   checked={formData.rememberMe}
   required={false}
@@ -157,15 +163,17 @@ const LoginPage = () => {
     setFormData({ ...formData, rememberMe: e.target.checked })
   }
       />
-      <p>Remember me</p>
+      <p className='p-0'>Remember me</p>
     
     </div>
     <Link to="/forgotpassword" className="basis-1/2 text-end underline">Forgot Password?</Link>
   </div>
-  
-       <Button type={"submit"} >
+  <div className='text-center'>
+  <Button type={"submit"} >
         Log In
         </Button>
+  </div>
+       
         </form>
   <p className='p-4'>Don't have an account? <Link className='underline' to="/Register">Sign Up</Link></p>
     </Layout>)}

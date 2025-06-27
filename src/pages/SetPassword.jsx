@@ -35,7 +35,15 @@ const handleSubmit = async (e)=>{
   e.preventDefault(); 
 
 
-
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+    return passwordRegex.test(password);
+  };
+  
+  if (formData.newPassword && !validatePassword(formData.newPassword.trim())) {
+    toast.info("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one special character.");
+    return;
+  }
 
   if (formData.newPassword !== formData.confirmPassword) {
     toast.info("Passwords do not match!");
@@ -49,7 +57,7 @@ const handleSubmit = async (e)=>{
    const payload ={
     ...rest, email: email
    }
-console.log(payload);
+
    try{
     const res = await fetch (`${apiUrl}/CandidateAuth/reset-password`, {
       method:'POST',
@@ -69,6 +77,7 @@ console.log(payload);
         confirmPassword: '',
       })
       navigate('/');
+      toast.success("Password reset successfully. You can now log in.");
     }
       else if(res.status === 400) {
             toast.error("Invalid input. Please check your data.");   
@@ -129,9 +138,12 @@ console.log(payload);
     <i class="fa-regular fa-eye"></i>
     </button>
     </div>
+    <div className='text-center'>
     <Button type={"submit"} >
         Reset Password
         </Button>
+    </div>
+    
     </form>
      
     <p className='p-4 text-[#01416EFF]'> <i class="fa-solid fa-arrow-left"></i> Back to <Link className='text-[#F0BD2D] ' to="/">log in</Link></p>

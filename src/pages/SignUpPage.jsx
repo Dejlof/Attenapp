@@ -29,7 +29,6 @@ const [isLoading, setIsLoading] = React.useState(false);
 const apiUrl =  import.meta.env.VITE_API_URL;
 
 
-
 const navigate = useNavigate();
 
 const handleChange = (e) => {
@@ -44,11 +43,28 @@ const handleChange = (e) => {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
+  if (formData.password !== formData.confirmPassword) {
+    toast.info("Passwords do not match!");
+    return;
+  }
+
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+    return passwordRegex.test(password);
+  };
+  
+  if (formData.password && !validatePassword(formData.password.trim())) {
+    toast.info("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one special character.");
+    return;
+  }
+  
 
   const requiredFields = [
     'firstName', 'lastName', 'email', 'phone', 'candidateGender',
     'staffId', 'department', 'password', 'confirmPassword'
   ];
+
+
 
   const missingFields = requiredFields.filter(field => !formData[field]);
 
@@ -57,10 +73,6 @@ const handleSubmit = async (e) => {
     return;
   }
 
-  if (formData.password !== formData.confirmPassword) {
-    toast.info("Passwords do not match!");
-    return;
-  }
 
     setIsLoading(true);
 
@@ -96,7 +108,8 @@ const handleSubmit = async (e) => {
 
     if (res.ok) {
       toast.success("Registered successfully!");
-      localStorage.getItem('token', responseBody.token);
+      localStorage.setItem('token', responseBody.token);
+      const candId = responseBody.candidateId;
   setFormData({
     firstName: '',
     lastName: '',
@@ -110,7 +123,7 @@ const handleSubmit = async (e) => {
     confirmPassword: '',
   });
   setCapturedImage(null);
-  navigate('/getstarted'); 
+  navigate('/getstarted',{ state: { email: formData.email, candidateId : candId } }); 
     } else if(res.status === 400) {
       toast.error("Invalid input. Please check your data.");
     }
@@ -119,6 +132,7 @@ const handleSubmit = async (e) => {
     }
     else if (res.status === 500) {
       toast.error("Server error. Please try again later.");
+      console.error(responseBody);
     }
     else if(res.status === 401) {
       toast.error("Unauthorized access.");
@@ -138,15 +152,15 @@ const handleSubmit = async (e) => {
     {isLoading ? (<LoadingPage/>) : (<Layout>
      <Header title={"Register"} word={"Welcome! Please fill in your credentials"}/>
      <Label label={"Label required field"}/>
-     <form onSubmit={handleSubmit} className='pt-5'>
-        <div className='flex flex-row flex-wrap justify-between w-210'>
+     <form onSubmit={handleSubmit} className='pt-5 '>
+        <div className='flex lg:flex-row flex-col flex-wrap justify-between  lg:w-210 '>
         {[
             ['First Name', 'firstName'],
             ['Last Name', 'lastName'],
             ['Email', 'email'],
             ['Phone Number', 'phone'],
           ].map(([label, name], idx) => (
-            <div key={idx} className='basis-1/2 mb-5'>
+            <div key={idx} className='basis-1/2 md:mb-5 mb-3'>
               <Label label={label} />
               <Input
                 name={name}
@@ -159,10 +173,10 @@ const handleSubmit = async (e) => {
             </div>
           ))}
           
-          <div className='basis-1/6 mb-5'>
+          <div className='lg:basis-1/6 mb-5'>
             <Label label="Gender" />
             <select
-              className="border pt-2 pb-2 pl-6 pr-4 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border py-2 lg:pl-6 lg:pr-4 pl-10 pr-10 lg:w-20 w-90 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               name="candidateGender"
               value={formData.candidateGender}
               onChange={handleChange}
@@ -178,13 +192,14 @@ const handleSubmit = async (e) => {
             ['Staff ID', 'staffId'],
             ['Cohort ID', 'cohortId'],
           ].map(([label, name], idx) => (
-            <div key={idx} className='basis-1/4 mb-5'>
+            <div key={idx} className='lg:basis-1/4 basis-1/2 mb-5 '>
               <Label label={label} />
               <Input
                 name={name}
                 type="text"
                 pad='pl-2'
-                w='w-50'
+                wmd='md:w-50'
+                w='w-90'
                 value={formData[name]}
                 onChange={handleChange}
                 required={true}
@@ -193,12 +208,13 @@ const handleSubmit = async (e) => {
           ))}
 
 
-            <div className='basis-1/4 mb-5'>
+            <div className='lg:basis-1/4 basis-1/2 mb-5'>
             <Label label={"Department"}/>
           <Input
             type={"text"}
             pad='pl-2'
-            w='w-60'
+            wmd='lg:w-60'
+            w='w-90'
             value={formData.department}
             onChange={handleChange}
             name={"department"}

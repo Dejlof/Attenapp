@@ -133,8 +133,8 @@ try{
      
        <Button onClick={handleSubmit} disabled={otp.some((digit) => digit === '')} className={` ${
     !otp.every(num => num !== '')
-      ? 'px-4 py-2 bg-[#dac691] text-[#72afdb] rounded-2xl w-100 cursor-crosshair'
-      : 'px-4 py-2 bg-[#F0BD2D] text-[#01416EFF] rounded-2xl w-100 cursor-pointer'
+      ? 'px-4 py-2 bg-[#dac691] text-[#72afdb] rounded-2xl w-60 md:w-100 cursor-crosshair'
+      : 'px-4 py-2 bg-[#F0BD2D] text-[#01416EFF] rounded-2xl w-60 md:w-100 cursor-pointer'
   }`}>
        Continue
         </Button>

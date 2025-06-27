@@ -3,9 +3,9 @@ import FBNLogo from '../assets/images/FBNLogo.png'
 
 const Sidebar = () => {
   return (
-    <section className="w-1/6 bg-[#01416EFF] h-full">
-    <div className="flex items-center justify-center h-[900px]">
-      <img className="w-20 h-16" src={FBNLogo} title="FirstBank Logo" alt="First Bank" />
+    <section className="lg:w-1/6 bg-[#01416EFF] h-1/4 lg:h-full w-sreen ">
+    <div className="flex lg:flex-col flex-row  lg:items-center lg:justify-center items-start h-1/4 lg:h-[900px] py-2 pl-10 w-full">
+      <img className="md:w-20 md:h-16 h-10 w-15" src={FBNLogo} title="FirstBank Logo" alt="First Bank" />
     </div>
     </section>
   )

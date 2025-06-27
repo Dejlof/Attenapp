@@ -47,7 +47,7 @@ const responseBody = await res.text();
 if (res.ok)
    {
   toast.success(`Password reset instructions sent to your email `);
- /* console.log(responseBody);*/
+ //console.log(responseBody);
  setEmail('');
 navigate('/resetpassword', { state: { email } });
 }
@@ -66,7 +66,7 @@ navigate('/resetpassword', { state: { email } });
 }
 catch (err){
   console.error("Error submitting:", err);
-  toast.success("An error occurred.  Please try again.");
+  toast.error("An error occurred.  Please try again.");
 
 }
 finally{
